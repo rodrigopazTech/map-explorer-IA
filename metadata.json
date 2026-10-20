@@ -1,0 +1,6 @@
+{
+  "name": "Block Explorer",
+  "description": "Geospatial exploration app powered by Google Maps Platform and Geocoding V4 REST API.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
