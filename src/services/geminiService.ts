@@ -6,6 +6,7 @@
 import { GeocodeResult } from '../types/geocoding';
 import { QuizCategory, QuizData } from '../types/quiz';
 import { FALLBACK_QUIZZES, FALLBACK_QUIZZES_ES, generateDynamicFallbackQuiz } from '../data/fallbackQuizzes';
+import { getFallbackInsights } from '../data/fallbackInsights';
 
 /**
  * Extracts a clean "City, State" (or City, Region / Country) identifier from a GeocodeResult.
@@ -81,29 +82,37 @@ export async function fetchLocalInsights(
     throw new Error('Location is required to generate insights.');
   }
 
-  const response = await fetch('/api/gemini/insights', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ location: cleanLoc, language }),
-  });
+  try {
+    const response = await fetch('/api/gemini/insights', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ location: cleanLoc, language }),
+    });
 
-  const data = await response.json();
+    const contentType = response.headers.get('content-type') || '';
 
-  if (!response.ok) {
-    throw new Error(data?.error?.message || 'Failed to fetch local insights from Gemini.');
+    if (response.ok && contentType.includes('application/json')) {
+      const data = await response.json();
+      if (data?.html) {
+        return {
+          html: data.html,
+          modelUsed: data.modelUsed || 'gemini-3.8-flash',
+          cached: data.cached,
+        };
+      }
+    } else {
+      // Plain-text rate limits (e.g. "Rate exceeded.") or non-JSON 429/503 from edge proxy
+      const errText = await response.text().catch(() => '');
+      console.warn(`[Gemini Insights API] Rate limit or status ${response.status} (${errText}). Activating curated insights fallback.`);
+    }
+  } catch (err) {
+    console.warn('[Gemini Insights API] Network error, activating curated insights fallback:', err);
   }
 
-  if (!data?.html) {
-    throw new Error('No insight content received.');
-  }
-
-  return {
-    html: data.html,
-    modelUsed: data.modelUsed,
-    cached: data.cached,
-  };
+  // Resilient fallback: provides high-fidelity curated secrets or dynamic insights with 0 crashes
+  return getFallbackInsights(cleanLoc, language);
 }
 
 /**
@@ -136,7 +145,8 @@ export async function fetchQuiz(
       }),
     });
 
-    if (response.ok) {
+    const contentType = response.headers.get('content-type') || '';
+    if (response.ok && contentType.includes('application/json')) {
       const data = await response.json();
       if (data?.questions && Array.isArray(data.questions) && data.questions.length >= 3) {
         return {
