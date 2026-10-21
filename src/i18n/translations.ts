@@ -142,7 +142,7 @@ export interface Translations {
 
 export const TRANSLATIONS: Record<Language, Translations> = {
   en: {
-    appTitle: 'Block Explorer',
+    appTitle: 'Map Explorer IA',
     appSubtitle: 'Geospatial Exploration Engine',
     apiBadge: 'V4 REST',
     liveStatus: 'Ready',
@@ -239,7 +239,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       'Standard mode tests recognizable city landmarks and famous regional culture. Hyperlocal Mode goes much deeper—testing exact cross streets, micro-district milestones, specific family-owned institutions, and obscure neighborhood folklore.',
     hyperlocalInfoTitleHow: 'How does it work?',
     hyperlocalInfoDescHow:
-      'When enabled, Block Explorer invokes the Google Maps Grounding Lite service with the Gemini API. It supplies the exact geocoded geographic coordinates of the current location to fetch authentic, verified place data and generate challenging insider questions.',
+      'When enabled, Map Explorer IA invokes the Google Maps Grounding Lite service with the Gemini AI API. It supplies the exact geocoded geographic coordinates of the current location to fetch authentic, verified place data and generate challenging insider questions.',
     howHyperlocalWorksTooltip: 'How Hyperlocal Mode works',
     chooseYourTopic: 'Choose your topic',
     chooseYourTopicDesc: 'Select one of the 3 themes to generate your 3-question trivia challenge',
@@ -279,8 +279,8 @@ export const TRANSLATIONS: Record<Language, Translations> = {
   },
 
   es: {
-    appTitle: 'Block Explorer',
-    appSubtitle: 'Motor de Exploración Geoespacial',
+    appTitle: 'Map Explorer IA',
+    appSubtitle: 'Motor de Exploración Geoespacial con IA',
     apiBadge: 'REST V4',
     liveStatus: 'Listo',
 
@@ -376,7 +376,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       'El modo estándar evalúa monumentos famosos de la ciudad y cultura regional general. El Modo Hiperlocal profundiza en esquinas exactas, hitos microbarriales, negocios familiares tradicionales y mitos y anécdotas barriales poco conocidos.',
     hyperlocalInfoTitleHow: '¿Cómo funciona?',
     hyperlocalInfoDescHow:
-      'Al activarlo, Block Explorer invoca el servicio Google Maps Grounding Lite junto con la API de Gemini. Envía las coordenadas geográficas exactas de la ubicación actual para consultar datos verificados y generar preguntas auténticas de verdadero conocedor local.',
+      'Al activarlo, Map Explorer IA invoca el servicio Google Maps Grounding Lite junto con la API de Gemini. Envía las coordenadas geográficas exactas de la ubicación actual para consultar datos verificados y generar preguntas auténticas de verdadero conocedor local.',
     howHyperlocalWorksTooltip: 'Cómo funciona el Modo Hiperlocal',
     chooseYourTopic: 'Elige tu tema',
     chooseYourTopicDesc: 'Selecciona uno de los 3 temas para generar tu desafío de trivia de 3 preguntas',

@@ -1,7 +1,7 @@
 {
-  "name": "block-explorer",
+  "name": "map-explorer-ia",
   "version": "1.0.0",
-  "description": "Geospatial exploration app powered by Google Maps Platform, Geocoding V4 REST API, and Gemini AI with multilingual trivia and failover cascade.",
+  "description": "Map Explorer IA: Explorador geoespacial con Google Maps Platform, Geocoding V4 REST API y Gemini AI con trivias bilingües y cascada de modelos.",
   "type": "module",
   "license": "Apache-2.0",
   "scripts": {

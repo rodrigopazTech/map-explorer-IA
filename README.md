@@ -1,4 +1,4 @@
-# 🌍 Block Explorer
+# 🌍 Map Explorer IA
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![React](https://img.shields.io/badge/React-19.0-61dafb.svg?logo=react)](https://react.dev/)
@@ -8,231 +8,214 @@
 [![Google Maps Platform](https://img.shields.io/badge/Google_Maps-Platform-4285F4.svg?logo=googlemaps)](https://developers.google.com/maps)
 [![Google Gemini AI](https://img.shields.io/badge/Google_Gemini-AI-8E75B2.svg?logo=googlegemini)](https://ai.google.dev/)
 
-> **Explorador geoespacial inteligente** que combina la precisión de **Google Maps Platform** y la API REST **Geocoding V4** con la inteligencia artificial de **Google Gemini** para descubrir secretos culturales locales y poner a prueba tus conocimientos con trivias dinámicas e hiperlocales.
+> **Map Explorer IA** es una aplicación web interactiva que fusiona la potencia geoespacial de **Google Maps Platform** y la API REST **Geocoding V4** con la inteligencia artificial generativa de **Google Gemini**. Permite explorar cualquier rincón del mundo, descubrir datos curiosos y secretos culturales poco conocidos, y poner a prueba los conocimientos del usuario con cuestionarios interactivos estándar e hiperlocales.
 
 ---
 
-## 🇪🇸 Características Principales (Spanish)
+## 🌟 Características Destacadas
 
-- 🔍 **Geocodificación de Alta Precisión con Google Geocoding V4 REST API**:
-  - Búsqueda en tiempo real de cualquier ciudad, barrio, monumento o dirección del mundo.
-  - Resolución detallada con desglose de componentes administrativos, identificador de lugar (`placeId`), granularidad de ubicación y coordenadas exactas (latitud/longitud a 6 decimales).
-  - Vuelo de cámara suave y animado (`flyTo`) con cálculo automático de zoom y límites visuales (`fitBounds`).
+### 🔍 1. Geocodificación Avanzada (Google Geocoding V4 REST API)
+- Búsqueda en tiempo real de cualquier ciudad, vecindario, calle o punto de interés del planeta.
+- Extracción de datos geográficos de alta resolución:
+  - Coordenadas de latitud y longitud con precisión de hasta 6 decimales.
+  - Identificador único de lugar (`placeId`).
+  - Desglose de componentes administrativos (localidad, estado/provincia, país, código postal).
+  - Nivel de granularidad (`ROOFTOP`, `RANGE_INTERPOLATED`, `GEOMETRIC_CENTER`, `APPROXIMATE`).
+- Animación de cámara dinámica (*Fly-to Glide*) con ajuste automático de límites visuales (*Viewport Bounding Box*).
 
-- 🗺️ **Mapa Interactivo con Google Maps Platform**:
-  - Visualización fluida con selector de tipos de mapa: Callejero (*Roadmap*), Satélite (*Satellite*), Híbrido (*Hybrid*) y Relieve (*Terrain*).
-  - Marcador personalizado interactivo con halo pulsante de alta visibilidad.
-  - Soporte táctil y diseño adaptable tanto para pantallas de escritorio como para móviles.
+### 🗺️ 2. Exploración Cartográfica Interactiva
+- Visualización fluida y responsiva mediante `@vis.gl/react-google-maps`.
+- Conmutador de estilos de mapa en tiempo real:
+  - **Callejero** (*Roadmap*)
+  - **Satélite** (*Satellite*)
+  - **Híbrido** (*Hybrid*)
+  - **Relieve** (*Terrain*)
+- Marcador de posición personalizado (*Custom Pin*) con halo pulsante reactivo.
 
-- 🤖 **Secretos y Datos Curiosos con Google Gemini AI**:
-  - Al buscar una ubicación, un asistente virtual genera 3 datos fascinantes e históricos poco conocidos del lugar.
-  - Indicador visible del modelo utilizado con caché inteligente para optimizar el consumo de la API.
+### 🤖 3. Guía Turístico Inteligente con Gemini AI
+- Generación contextual instantánea de **3 secretos culturales poco conocidos** del destino explorado.
+- Sistema de caché inteligente para evitar consultas repetitivas innecesarias.
+- Identificación transparente del modelo de IA que respondió la consulta.
 
-- 🧠 **Trivia Interactiva de Conocimiento Local**:
-  - Desafío interactivo de 3 preguntas de opción múltiple en 3 categorías: **Gastronomía local**, **Arte y cultura** e **Historia local**.
-  - **Modo Hiperlocal**: Cuestionario especializado enfocado en historia oral a nivel de manzana/barrio, tradiciones artesanales y vida cotidiana de los vecinos.
-  - Retroalimentación formativa con explicaciones detalladas y fuentes verificadas mediante enlaces de fundamentación (*Grounding Links*).
+### 🧠 4. Trivia de Conocimiento Local y Modo Hiperlocal
+- Desafío interactivo de 3 preguntas de opción múltiple con 3 ejes temáticos:
+  - 🍲 **Gastronomía local**: platos autóctonos, comida callejera, maridajes tradicionales.
+  - 🎨 **Arte y cultura**: arquitectura, música, festivales folclóricos y leyendas urbanas.
+  - 🏛️ **Historia local**: hitos fundacionales, personajes históricos y metamorfosis urbanas.
+- **Modo Hiperlocal (Nivel Experto)**:
+  - Diseñado para verdaderos residentes y conocedores.
+  - Utiliza las coordenadas geográficas exactas del punto seleccionado para generar preguntas sobre historia barrial, vida de esquinas emblemáticas e instituciones vecinales.
+  - Proporciona retroalimentación explicativa y enlaces de fundamentación verificada (*Google Grounding Links*).
 
-- 🔄 **Cascada Automática de Modelos Gratuitos (*Failover Cascade*)**:
-  - Si el modelo principal (`gemini-3.8-flash`) alcanza límites de cuota (429) o alta demanda temporal (503), el sistema conmuta automáticamente a `gemini-3.1-flash-lite`, luego a `gemini-flash-latest`, y finalmente a un archivo curado sin interrumpir la experiencia del usuario.
+### 🔄 5. Cascada Automática de Modelos Gratuitos (*Failover Cascade*)
+- El backend implementa un mecanismo de alternancia entre modelos gratuitos de Google Gemini:
+  1. `gemini-3.8-flash` (Modelo principal de alta velocidad)
+  2. `gemini-3.1-flash-lite` (Respaldo inmediato ante picos de demanda o error 503/429)
+  3. `gemini-flash-latest` (Respaldo terciario)
+  4. **Archivo curado local** (Garantiza servicio ininterrumpido en caso de desconexión)
 
-- 🌐 **Soporte Bilingüe Completo (Español / Inglés)**:
-  - Botón selector directo `[ 🇺🇸 EN | 🇪🇸 ES ]` en la cabecera, mapa y modales.
-  - Todo el contenido de la interfaz, los mensajes de error, las recomendaciones y las respuestas generadas por los modelos de IA se traducen íntegramente al idioma elegido.
+### 🌐 6. Experiencia 100% Bilingüe (Español / Inglés)
+- Selector de idioma visible `[ 🇺🇸 EN | 🇪🇸 ES ]` disponible en todo momento.
+- Cambia instantáneamente la interfaz completa, los mensajes de diagnóstico y las respuestas generadas por Gemini.
+- Persistencia automática de la preferencia en `localStorage`.
 
-- 🛠️ **Consola de Diagnóstico y Telemetría en Vivo**:
-  - Visualización del código HTTP, latencia en milisegundos, URL ejecutada de la API REST V4 y visor de JSON crudo para desarrolladores y auditoría.
-
----
-
-## 🇺🇸 Key Features (English)
-
-- 🔍 **High-Precision Google Geocoding V4 REST API Integration**:
-  - Real-time search for any city, neighborhood, landmark, or address worldwide.
-  - Deep breakdown with address components, place IDs, location granularity, and coordinates to 6 decimal places.
-  - Smooth animated camera gliding (`flyTo`) with automatic bounding box framing.
-
-- 🗺️ **Interactive Google Maps**:
-  - Toggle between Roadmap, Satellite, Hybrid, and Terrain layers.
-  - Custom pulsating marker with animated hover states.
-  - Fully responsive layout for desktop and mobile devices.
-
-- 🤖 **Contextual Gemini AI Local Insights**:
-  - Instant generation of 3 authentic, lesser-known cultural secrets for the selected location.
-  - Transparent model badge and client/server-level caching.
-
-- 🧠 **Interactive Local Knowledge Trivia**:
-  - 3-question quizzes across Cuisine, Art & Culture, and Local History.
-  - **Hyperlocal Mode** focusing on block-level oral history and resident folklore.
-  - Instant scoring with explanations and Google Search grounding citations.
-
-- 🔄 **Multi-Model Free Tier Failover Cascade**:
-  - Automatic fallback cascade (`gemini-3.8-flash` ➔ `gemini-3.1-flash-lite` ➔ `gemini-flash-latest` ➔ Curated Archive) to guarantee uninterrupted uptime during demand spikes or rate limits.
-
-- 🌐 **100% Bilingual Localization (EN / ES)**:
-  - Global language switch toggling all UI copy, error diagnostics, and Gemini AI outputs.
+### 🛠️ 7. Consola de Diagnóstico en Tiempo Real
+- Auditoría técnica integrada que muestra código HTTP de respuesta, tiempo de latencia en milisegundos, URL ejecutada y visor de JSON crudo para depuración.
 
 ---
 
-## 🏗️ Arquitectura y Tecnologías
+## 🏗️ Stack Tecnológico
 
-| Componente | Tecnología | Propósito |
+| Capa | Herramienta | Utilidad |
 |---|---|---|
-| **Frontend** | React 19 + TypeScript | Interfaz reactiva, modular y con tipado estricto |
-| **Estilos** | Tailwind CSS v4 | Diseño moderno, modo oscuro y micro-interacciones |
-| **Mapas** | `@vis.gl/react-google-maps` | Integración declarativa de Google Maps JavaScript API |
-| **Geocodificación** | Google Geocoding V4 REST API | Endpoint REST directo con solución corporativa certificada |
-| **Inteligencia Artificial** | `@google/genai` TypeScript SDK | Consultas a modelos Gemini con llamadas seguras del lado del servidor |
-| **Iconografía y Animaciones** | `lucide-react` & `motion` | Iconos vectoriales y transiciones fluidas |
-| **Herramienta de Construcción** | Vite 8 | Servidor de desarrollo ultrarrápido y compilación optimizada |
+| **Frontend Framework** | React 19 + TypeScript | UI declarativa, componentes tipados y alto rendimiento |
+| **Estilos** | Tailwind CSS v4 | Diseño moderno, modo oscuro (*slate/indigo*) y responsive |
+| **Mapas** | `@vis.gl/react-google-maps` | Integración con la API JavaScript de Google Maps |
+| **Geocodificación** | Google Geocoding V4 REST API | Resolución precisa de direcciones y coordenadas |
+| **Inteligencia Artificial** | `@google/genai` TypeScript SDK | Consultas a modelos Gemini con llamadas seguras desde el servidor |
+| **Iconografía y Animación** | `lucide-react` & `motion` | Iconos vectoriales limpios y microanimaciones suaves |
+| **Build Tooling** | Vite 8 | Servidor de desarrollo con HMR y empaquetado optimizado |
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura del Código
 
 ```text
-├── .env.example              # Plantilla documentada de variables de entorno (sin secretos)
-├── .gitignore                # Reglas estrictas de exclusión para repositorio público
+├── .env.example              # Plantilla documentada de variables de entorno (sin claves)
+├── .gitignore                # Exclusión estricta de credenciales y binarios
 ├── LICENSE                   # Licencia de código abierto Apache 2.0
 ├── README.md                 # Documentación completa del proyecto
-├── index.html                # Entrada HTML con metadatos y SEO optimizado
+├── index.html                # Entrada HTML con metadatos y SEO
 ├── package.json              # Dependencias y scripts de ejecución
-├── tsconfig.json             # Configuración del compilador TypeScript
+├── tsconfig.json             # Configuración de TypeScript
 ├── vite.config.ts            # Configuración de Vite y proxy seguro para Gemini API
 └── src/
-    ├── App.tsx               # Orquestador principal de estado y diseño responsivo
-    ├── main.tsx              # Punto de entrada de la aplicación React
+    ├── App.tsx               # Componente principal y gestión de estado
+    ├── main.tsx              # Punto de entrada de la aplicación
     ├── components/           # Componentes modulares de interfaz
     │   ├── CustomMarker.tsx            # Marcador animado con halo interactivo
     │   ├── ErrorDisplay.tsx            # Panel de errores y sugerencias de solución
-    │   ├── LanguageToggle.tsx          # Botón de alternancia de idioma (EN/ES)
+    │   ├── LanguageToggle.tsx          # Botón selector de idioma (EN/ES)
     │   ├── LocalInsightsBanner.tsx     # Tarjeta de secretos culturales con Gemini
-    │   ├── LocalKnowledgeQuizModal.tsx # Modal de juego de preguntas y resultados
-    │   ├── LocationDetails.tsx         # Tarjeta de coordenadas y datos geográficos
+    │   ├── LocalKnowledgeQuizModal.tsx # Modal de trivia interactiva y resultados
+    │   ├── LocationDetails.tsx         # Desglose de coordenadas y datos geográficos
     │   ├── MapCameraController.tsx     # Controlador de vuelo de cámara (flyTo)
     │   ├── MapExplorer.tsx             # Lienzo de mapa y controles de capas
     │   ├── PresetButtons.tsx           # Destinos mundiales precargados
     │   └── SearchBar.tsx               # Barra de búsqueda con historial reciente
     ├── data/                 # Datos estáticos y archivos de respaldo
-    │   ├── fallbackQuizzes.ts          # Trivias curadas en español e inglés
-    │   └── presets.ts                  # Lista de ubicaciones curadas con coordenadas
-    ├── i18n/                 # Sistema de internacionalización
-    │   ├── LanguageContext.tsx         # Proveedor de contexto y persistencia
+    │   ├── fallbackQuizzes.ts          # Preguntas curadas bilingües y generadores
+    │   └── presets.ts                  # Ubicaciones destacadas predeterminadas
+    ├── i18n/                 # Internacionalización
+    │   ├── LanguageContext.tsx         # Contexto de idioma con persistencia
     │   └── translations.ts             # Diccionario completo de textos en ES y EN
-    ├── services/             # Servicios de conexión con APIs
+    ├── services/             # Servicios de conexión con APIs externas
     │   ├── geminiService.ts            # Cliente para secretos y trivias locales
     │   └── geocodingService.ts         # Conector con Google Geocoding V4 REST API
     └── types/                # Definiciones de tipos TypeScript
-        ├── geocoding.ts                # Tipos para respuestas de geocodificación
-        └── quiz.ts                     # Tipos para la trivia y resultados
+        ├── geocoding.ts                # Tipos de respuestas de geocodificación
+        └── quiz.ts                     # Tipos de modelos de preguntas y respuestas
 ```
 
 ---
 
-## 🚀 Instalación y Puesta en Marcha Local
+## 🚀 Instalación y Ejecución Local
 
 ### Prerrequisitos
 
-- **Node.js**: Versión 18.0 o superior (recomendado Node 20+ LTS).
+- **Node.js**: Versión 18 o superior (recomendado Node 20+ LTS).
 - **npm**, **pnpm** o **bun** instalado.
 - Una **clave de API de Google Maps Platform** con las siguientes APIs habilitadas en [Google Cloud Console](https://console.cloud.google.com/):
   - *Maps JavaScript API*
   - *Geocoding API*
-- Una **clave de API de Google Gemini** obtenida gratuitamente en [Google AI Studio](https://aistudio.google.com/).
+- Una **clave de API gratuita de Google Gemini** obtenida en [Google AI Studio](https://aistudio.google.com/).
 
 ---
 
 ### Paso a Paso
 
-1. **Clonar el repositorio**:
+1. **Clona este repositorio**:
    ```bash
-   git clone https://github.com/TU_USUARIO/block-explorer.git
-   cd block-explorer
+   git clone https://github.com/TU_USUARIO/map-explorer-ia.git
+   cd map-explorer-ia
    ```
 
-2. **Instalar dependencias**:
+2. **Instala las dependencias**:
    ```bash
    npm install
    ```
 
-3. **Configurar las variables de entorno**:
-   Copia el archivo de ejemplo:
+3. **Configura tus variables de entorno**:
+   Copia el archivo de ejemplo para generar tu archivo local:
    ```bash
    cp .env.example .env
    ```
-   Abre `.env` en tu editor y coloca tus claves reales:
+   Abre `.env` y coloca tus claves de acceso:
    ```env
    # Clave pública para el mapa interactivo y geocodificación V4
    VITE_GOOGLE_MAPS_API_KEY="AIzaSyTuClaveDeGoogleMapsAqui"
 
    # Clave de Gemini para generar secretos y preguntas de trivia
    GEMINI_API_KEY="TuClaveDeGeminiAqui"
+
+   # URL base de la aplicación (opcional para desarrollo local)
+   APP_URL="http://localhost:3000"
    ```
 
-4. **Iniciar el servidor de desarrollo**:
+4. **Inicia el servidor de desarrollo**:
    ```bash
    npm run dev
    ```
-   Abre tu navegador en [http://localhost:3000](http://localhost:3000).
+   Abre tu navegador en: [http://localhost:3000](http://localhost:3000).
 
-5. **Construir para producción**:
+5. **Compilar para producción**:
    ```bash
    npm run build
    ```
-   Los archivos estáticos listos para desplegar se generarán en la carpeta `dist/`.
+   La aplicación optimizada se generará en la carpeta `dist/`.
 
 ---
 
-## 🔒 Seguridad y Buenas Prácticas para Repositorios Públicos
+## 🔒 Seguridad y Buenas Prácticas para Publicación
 
-Este proyecto ha sido configurado bajo las mejores prácticas de seguridad para código abierto:
-
-1. **Sin secretos en el código**:
-   - El archivo `.env` está expresamente excluido en `.gitignore` para evitar filtraciones accidentales de credenciales.
-   - Solo se sube `.env.example` con marcadores de posición (*placeholders*).
-
-2. **Proxy de seguridad del lado del servidor**:
-   - La clave `GEMINI_API_KEY` se consume **exclusivamente en las rutas del servidor** (`/api/gemini/*`) implementadas en el middleware de Vite/Express, por lo que **nunca se expone en el código cliente** que se descarga en el navegador.
-
-3. **Restricción recomendada para Google Maps**:
-   - En tu consola de Google Cloud, configura la restricción de tu clave `VITE_GOOGLE_MAPS_API_KEY` por **Referentes HTTP** (por ejemplo: `http://localhost:*` para desarrollo y tu dominio de producción).
+- **Sin claves expuestas**: El archivo `.gitignore` excluye deliberadamente cualquier variante de `.env` para garantizar que tus credenciales privadas nunca se suban a GitHub.
+- **Proxy de seguridad en servidor**: `GEMINI_API_KEY` se ejecuta exclusivamente del lado del servidor (en el middleware proxy de Vite/Express), evitando que quede expuesta en el código que el navegador descarga.
+- **Restricción de Google Maps**: En Google Cloud Console, se recomienda restringir tu clave `VITE_GOOGLE_MAPS_API_KEY` por **Referentes HTTP** (ej. `http://localhost:*` para desarrollo y tu dominio de producción).
 
 ---
 
-## 📤 Instrucciones para Subir este Proyecto a GitHub
+## 📤 Pasos para Publicar en tu Cuenta de GitHub
 
-Si deseas inicializar el repositorio y subirlo a tu cuenta de GitHub por primera vez:
+Sigue estos pasos para subir este proyecto a tu GitHub:
 
-```bash
-# 1. Inicializar git en la raíz del proyecto
-git init
+1. **Crea un nuevo repositorio en GitHub**:
+   - Entra a [https://github.com/new](https://github.com/new).
+   - Nómbralo `map-explorer-ia`.
+   - Déjalo como **Público** y **NO marques** las opciones de agregar README, .gitignore ni licencia (ya están incluidos en el proyecto).
 
-# 2. Agregar todos los archivos preparados
-git add .
+2. **Ejecuta en tu terminal**:
+   ```bash
+   # 1. Agregar todos los archivos preparados
+   git add .
 
-# 3. Confirmar que .env no esté incluido (debe estar ignorado)
-git status
+   # 2. Verificar que los archivos estén listos y que .env NO aparezca
+   git status
 
-# 4. Crear el commit inicial
-git commit -m "feat: initial release of Block Explorer with Maps V4 and Gemini AI"
+   # 3. Realizar el commit inicial
+   git commit -m "feat: initial release of Map Explorer IA"
 
-# 5. Renombrar la rama a main
-git branch -M main
+   # 4. Asegurar que la rama principal se llame main
+   git branch -M main
 
-# 6. Vincular con tu repositorio remoto de GitHub
-# (Crea primero un repositorio vacío en https://github.com/new)
-git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+   # 5. Conectar con tu repositorio remoto (reemplaza TU_USUARIO)
+   git remote add origin https://github.com/TU_USUARIO/map-explorer-ia.git
 
-# 7. Subir el código
-git push -u origin main
-```
+   # 6. Subir el proyecto a GitHub
+   git push -u origin main
+   ```
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia **Apache 2.0**. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
-
----
-
-Desarrollado con ❤️ combinando el poder geoespacial de **Google Maps** y la inteligencia contextual de **Google Gemini**.
+Este proyecto está distribuido bajo los términos de la Licencia **Apache 2.0**. Para más información, consulta el archivo [LICENSE](./LICENSE).
